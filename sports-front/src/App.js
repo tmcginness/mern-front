@@ -14,7 +14,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/')
+      .get('http://localhost:3000/sports')
       .then((response) => {
         setSports(response.data);
       })
@@ -23,7 +23,7 @@ const App = () => {
   const handleNewSportFormSubmit = (e) => {
     e.preventDefault();
     axios.post(
-      'http://localhost:3000/',
+      'http://localhost:3000/sports',
       {
         name: newName,
         description: newDescription,
@@ -34,7 +34,7 @@ const App = () => {
       }
     ).then(() => {
       axios
-        .get('http://localhost:3000/')
+        .get('http://localhost:3000/sports')
         .then((response) => {
           setSports(response.data)
         })
@@ -50,7 +50,7 @@ const App = () => {
         }
       ).then(() => {
         axios
-          .get('http://localhost:3000/')
+          .get('http://localhost:3000/sports')
           .then((response) => {
             setSports(response.data)
           })
@@ -63,7 +63,7 @@ const App = () => {
       .delete(`http://localhost:3000//${sportsData._id}`)
       .then(() => {
         axios
-          .get('http://localhost:3000/')
+          .get('http://localhost:3000/sports')
           .then((response) => {
             setSports(response.data)
           })
