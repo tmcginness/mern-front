@@ -1,25 +1,81 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import { useState, useEffect } from 'react'
 
-function App() {
+const App = () => {
+
+  const [sports, setSports] = useState([]);
+  const [name, newName] = useState('');
+  const [description, newDescription] = useState('');
+  const [location, newLocation] = useState('');
+  const [lfm, newLFM] = useState(true);
+  const [number, newNumber] = useState(0);
+
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/')
+      .then((response) => {
+        setSports(response.data);
+      })
+  })
+
+  const handleNewSportFormSubmit = (e) => {
+    e.preventDefault();
+    axios.post(
+      'http://localhost:3000/',
+      {
+        name: newName,
+        description: newDescription,
+        location: newLocation,
+        // LFM = looking for more aka need
+        lfm: newLFM,
+        lfmNumber: newNumber
+      }
+    ).then(() => {
+      axios
+        .get('http://localhost:3000/')
+        .then((response) => {
+          setSports(response.data)
+        })
+    })
+  }
+
+  const handleToggleLFM = (sportsData) => {
+    axios
+      .put(`http://localhost:3000/${sportsData._id}`,
+        {
+          name: sportsData.name,
+          lfm: !sportsData.lfm
+        }
+      ).then(() => {
+        axios
+          .get('http://localhost:3000/')
+          .then((response) => {
+            setSports(response.data)
+          })
+      })
+  }
+
+
+  const handleDelete = (sportsData) => {
+    axios
+      .delete(`http://localhost:3000//${sportsData._id}`)
+      .then(() => {
+        axios
+          .get('http://localhost:3000/')
+          .then((response) => {
+            setSports(response.data)
+          })
+      })
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <main>
+      <h1>Hello World</h1>
+    </main >
+  )
 }
 
 export default App;
