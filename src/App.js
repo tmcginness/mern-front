@@ -50,7 +50,6 @@ const App = () => {
 
   return (
     <main>
-      <h1>Hello World</h1>
       <Item item={sports} setSports={setSports} />
       <Form setSports={setSports} />
     </main >
