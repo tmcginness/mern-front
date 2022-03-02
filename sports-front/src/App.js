@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Form from './components/form';
+import Item from './components/item'
 
 const App = () => {
 
@@ -50,6 +51,7 @@ const App = () => {
   return (
     <main>
       <h1>Hello World</h1>
+      <Item item={sports} setSports={setSports} />
       <Form setSports={setSports} />
     </main >
   )
