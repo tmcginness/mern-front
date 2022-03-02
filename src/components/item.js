@@ -10,10 +10,10 @@ const Items = (props) => {
 
     const handleDelete = (itemData) => {
         axios
-            .delete(`http://localhost:3000/sports/${itemData._id}`)
+            .delete(`https://rocky-fortress-29259.herokuapp.com/sports/${itemData._id}`)
             .then(() => {
                 axios
-                    .get('http://localhost:3000/sports')
+                    .get('https://rocky-fortress-29259.herokuapp.com/sports')
                     .then((response) => {
                         props.setSports(response.data)
                     })
@@ -23,7 +23,7 @@ const Items = (props) => {
     const handleToggleLFM = (itemData) => {
         axios
             .put(
-                `http://localhost:3000/sports/${itemData._id}`,
+                `https://rocky-fortress-29259.herokuapp.com/sports/${itemData._id}`,
                 {
 
                     lfm: !itemData.lfm
@@ -31,7 +31,7 @@ const Items = (props) => {
             )
             .then(() => {
                 axios
-                    .get('http://localhost:3000/sports')
+                    .get('https://rocky-fortress-29259.herokuapp.com/sports')
                     .then((response) => {
                         props.setSports(response.data)
                     })

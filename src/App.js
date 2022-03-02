@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/sports')
+      .get('https://rocky-fortress-29259.herokuapp.com/sports')
       .then((response) => {
         setSports(response.data);
       })
@@ -20,14 +20,14 @@ const App = () => {
 
   const handleToggleLFM = (sportsData) => {
     axios
-      .put(`http://localhost:3000/${sportsData._id}`,
+      .put(`https://rocky-fortress-29259.herokuapp.com/${sportsData._id}`,
         {
           name: sportsData.name,
           lfm: !sportsData.lfm
         }
       ).then(() => {
         axios
-          .get('http://localhost:3000/sports')
+          .get('https://rocky-fortress-29259.herokuapp.com/sports')
           .then((response) => {
             setSports(response.data)
           })
@@ -37,10 +37,10 @@ const App = () => {
 
   const handleDelete = (sportsData) => {
     axios
-      .delete(`http://localhost:3000/${sportsData._id}`)
+      .delete(`https://rocky-fortress-29259.herokuapp.com/${sportsData._id}`)
       .then(() => {
         axios
-          .get('http://localhost:3000/sports')
+          .get('https://rocky-fortress-29259.herokuapp.com/sports')
           .then((response) => {
             setSports(response.data)
           })
