@@ -32,7 +32,7 @@ const Form = (props) => {
     const handleNewSportSubmit = (e) => {
         e.preventDefault();
         axios.post(
-            'http://localhost:3000/sports',
+            'https://rocky-fortress-29259.herokuapp.com/sports',
             {
                 name: name,
                 description: description,
@@ -43,7 +43,7 @@ const Form = (props) => {
             }
         ).then(() => {
             axios
-                .get('http://localhost:3000/sports')
+                .get('https://rocky-fortress-29259.herokuapp.com/sports')
                 .then((response) => {
                     props.setSports(response.data)
                 })
