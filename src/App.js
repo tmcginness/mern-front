@@ -48,8 +48,8 @@ const App = () => {
 
   return (
     <main>
-      <Item item={sports} setSports={setSports} />
       <Form setSports={setSports} />
+      <Item item={sports} setSports={setSports} />
     </main >
   )
 }

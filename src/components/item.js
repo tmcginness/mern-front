@@ -41,23 +41,26 @@ const Items = (props) => {
 
     return (
         <div>
-            <div className="flex">
+            <div className="container">
                 {
                     props.item.map((item) => {
-                        return <h2 key={item._id}
+                        return ( 
+                        <div className="card">
+                            <span key={item._id}
                             onClick={(event) => { handleToggleLFM(item) }}>
                             {
                                 (item.lfm) ?
                                     <h2>{item.name} (Need Players!)</h2> :
                                     <h2>{item.name} (Doesn't Need Players)</h2>
-                            }
+                            } </span>
                             <h3>{item.description}</h3>
                             <h3>{item.location}</h3>
                             <h3>{item.lfm}</h3>
                             <h3>{item.lfmNumber}</h3>
 
                             <button onClick={(event) => { handleDelete(item) }}>Delete</button>
-                        </h2>
+                        </div>
+                        )
                     })
                 }
             </div>
