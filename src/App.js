@@ -8,8 +8,6 @@ const App = () => {
 
   const [sports, setSports] = useState([]);
 
-
-
   useEffect(() => {
     axios
       .get('https://rocky-fortress-29259.herokuapp.com/sports')

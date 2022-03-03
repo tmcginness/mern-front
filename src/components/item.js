@@ -52,6 +52,7 @@ const Items = (props) => {
                                     <h2>{item.name} (Doesn't Need Players)</h2>
                             }
                             <h3>{item.description}</h3>
+                            <h3>{item.location}</h3>
                             <h3>{item.lfm}</h3>
                             <h3>{item.lfmNumber}</h3>
 
