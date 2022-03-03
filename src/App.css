@@ -1,0 +1,25 @@
+
+
+body{
+  background-color: whitesmoke;
+  text-align: center;
+  font-family: 'Lobster', cursive;
+}
+Form {
+  background-color: grey
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: grey;
+  border-radius: 15px;
+}
