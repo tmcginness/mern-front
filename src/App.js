@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Form from './components/form';
 import Item from './components/item'
+const API_KEY = process.env.API_KEY
 
 const App = () => {
 
@@ -50,6 +51,7 @@ const App = () => {
     <main>
       <Form setSports={setSports} />
       <Item item={sports} setSports={setSports} />
+
     </main >
   )
 }
