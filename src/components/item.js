@@ -45,7 +45,7 @@ const Items = (props) => {
                 {
                     props.item.map((item) => {
                         return (
-                            <div className="card">
+                            <div className="card" >
                                 <span key={item._id}
                                     onClick={(event) => { handleToggleLFM(item) }}>
                                     {
