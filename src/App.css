@@ -86,3 +86,9 @@ input[type=checkbox]{
 input[type=submit]{
   margin: 12px 0;
 }
+
+.searchBar{
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}

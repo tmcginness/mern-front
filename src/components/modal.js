@@ -6,6 +6,11 @@ import { useState } from 'react';
 
 const EditModal = (props) => {
     const [description, setDescription] = useState(props.description)
+    const [name, setNewName] = useState(props.name);
+    const [date, setNewDate] = useState(props.date);
+    const [location, setNewLocation] = useState(props.location);
+    const [lfm, setNewLFM] = useState(true);
+    const [number, setNewNumber] = useState(props.number);
 
     const formEdit = (itemData) => {
         itemData.preventDefault()

@@ -6,8 +6,12 @@ import Button from 'react-bootstrap/Button';
 
 
 
+
 const Items = (props) => {
     const [modalShow, setModalShow] = React.useState(false);
+    const [query, setQuery] = useState("")
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
 
     const handleDelete = (itemData) => {
         axios
@@ -43,10 +47,19 @@ const Items = (props) => {
     return (
         <div>
             <h2 className="containerTitle">Looking For A Game? Check Out Below!</h2>
+            <div className="searchBar">
+                <input placeholder="Search For A Sport Or Location" onChange={event => setQuery(event.target.value)} />
+            </div>
             <div className="container">
 
                 {
-                    props.item.map((item) => {
+                    props.item.filter(item => {
+                        if (query === '') {
+                            return item;
+                        } else if (item.name.toLowerCase().includes(query.toLowerCase()) || item.location.toLowerCase().includes(query.toLowerCase())) {
+                            return item;
+                        }
+                    }).map((item) => {
                         return (
                             <div className="card" >
                                 <span key={item._id}

@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
-
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
@@ -56,7 +55,6 @@ const App = () => {
       </div>
       <Form setSports={setSports} />
       <Item item={sports} setSports={setSports} />
-
     </main >
   )
 }
