@@ -4,7 +4,6 @@ import axios from 'axios'
 
 const Form = (props) => {
     const [name, setNewName] = useState('');
-    const [date, setNewDate] = useState('');
     const [description, setNewDescription] = useState('');
     const [location, setNewLocation] = useState('');
     const [lfm, setNewLFM] = useState(true);
@@ -13,10 +12,6 @@ const Form = (props) => {
 
     const handleNewName = (event) => {
         setNewName(event.target.value)
-    }
-
-    const handleNewDate = (event) => {
-        setNewDate(event.target.value)
     }
 
     const handleNewDescription = (event) => {
@@ -62,7 +57,6 @@ const Form = (props) => {
                 <div className="formContainer">
                     <form onSubmit={handleNewSportSubmit}>
                         <strong>Sport:</strong> <input type='text' onChange={handleNewName} /><br />
-                        <strong>Date:</strong> <input type='date' onChange={handleNewDate} /><br />
                         <strong>Description:</strong> <input type='text' onChange={handleNewDescription} /><br />
                         <strong>Address/Location:</strong> <input type='text' onChange={handleNewLocation} /><br />
                         <strong>Looking For More Players?</strong> <input type='checkbox' onChange={handleNewLFM} /><br />

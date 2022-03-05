@@ -54,7 +54,6 @@ const Items = (props) => {
                                             <h2>{item.name} (Doesn't Need Players)</h2>
                                     } </span>
                                 <p><strong>{item.description}</strong></p>
-                                <p><strong>{item.date}</strong></p>
                                 <p><strong>Location: {item.location}</strong></p>
                                 <p><strong>Players Needed: {item.lfmNumber}</strong></p>
 
