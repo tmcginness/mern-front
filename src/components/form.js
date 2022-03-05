@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const Form = (props) => {
     const [name, setNewName] = useState('');
+    const [date, setNewDate] = useState('');
     const [description, setNewDescription] = useState('');
     const [location, setNewLocation] = useState('');
     const [lfm, setNewLFM] = useState(true);
@@ -12,6 +13,10 @@ const Form = (props) => {
 
     const handleNewName = (event) => {
         setNewName(event.target.value)
+    }
+
+    const handleNewDate = (event) => {
+        setNewDate(event.target.value)
     }
 
     const handleNewDescription = (event) => {
@@ -53,15 +58,19 @@ const Form = (props) => {
 
     return (
         <>
-            <h2>Let's Find You a Partner!</h2>
-            <form onSubmit={handleNewSportSubmit}>
-                Name: <input type='text' onChange={handleNewName} /><br />
-                Description: <input type='text' onChange={handleNewDescription} /><br />
-                Location: <input type='text' onChange={handleNewLocation} /><br />
-                Looking For More Players? <input type='checkbox' onChange={handleNewLFM} /><br />
-                How Many? <input type='number' onChange={handleNewNumber} /><br />
-                <input type='submit' value='Add Item' />
-            </form>
+            <div className="formBackground">
+                <div className="formContainer">
+                    <form onSubmit={handleNewSportSubmit}>
+                        <strong>Sport:</strong> <input type='text' onChange={handleNewName} /><br />
+                        <strong>Date:</strong> <input type='date' onChange={handleNewDate} /><br />
+                        <strong>Description:</strong> <input type='text' onChange={handleNewDescription} /><br />
+                        <strong>Address/Location:</strong> <input type='text' onChange={handleNewLocation} /><br />
+                        <strong>Looking For More Players?</strong> <input type='checkbox' onChange={handleNewLFM} /><br />
+                        <strong>How Many?</strong> <input type='number' onChange={handleNewNumber} /><br />
+                        <input type='submit' value='Add Item' />
+                    </form>
+                </div>
+            </div>
         </>
     )
 }
