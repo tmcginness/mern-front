@@ -68,6 +68,7 @@ const Items = (props) => {
                                 </div>
 
                                 <EditModal
+                                    id={item._id}
                                     name={item.name}
                                     date={item.date}
                                     description={item.description}
