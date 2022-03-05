@@ -1,11 +1,40 @@
 .title{
-  font-size: 30px;
+  padding: 100px 0px 200px 0px;
+  background: url(/Users/ted1/Desktop/project3/mern-front/src/imgs/Background.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.title h2{  font-size: 45px;}
+
+.containerTitle{
+  padding-top: 45px;
 }
 
 body{
   background-color: whitesmoke;
-  text-align: center;
-  font-family: 'Lobster', cursive;
+  
+}
+
+h1, h2 ,h3, h4, p {
+  font-family: 'Lobster', cursive !important;
+  text-align: center!important;
+}
+
+button{
+  margin: 0px 15px!important;
+  width: 75px;
+}
+
+#modalButton{
+  margin: 25px 0px 0px 0px!important;
+  width:inherit;
+}
+
+#addButton{
+  margin: 15px 0px 0px 0px!important;
+  width: 100%;
 }
 
 Form{
@@ -19,7 +48,7 @@ text-align: left;
 }
 
 .formBackground{
-  background-color: rgb(197, 197, 197)
+  background-color: rgb(219, 219, 219)!important;
 }
 
 .container {
@@ -27,22 +56,19 @@ text-align: left;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1em;
-  margin: 0px 45px 0px 60px;
-
-}
-
-.item{
+  margin: 20px 45px 45px 60px;
 
 }
 
 .card {
   display: flex;
-  flex: 0 1 300px;
-  margin: 15px 0px;
+  flex: 0 1 400px;
+  margin: 15px 0px 0px 0px;
+  background-color: rgb(241, 241, 241)!important;
   padding: 15px;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(197, 197, 197);
+  border: 1px solid rgb(97, 97, 97)!important;
   border-radius: 15px;
 }
 

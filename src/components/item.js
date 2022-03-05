@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import React from 'react'
 import axios from 'axios'
+import EditModal from './modal'
+import Button from 'react-bootstrap/Button';
 
 
 
 const Items = (props) => {
-
-    // const [newMenu, setNewMenu] = useState([])
+    const [modalShow, setModalShow] = React.useState(false);
 
     const handleDelete = (itemData) => {
         axios
@@ -41,7 +42,9 @@ const Items = (props) => {
 
     return (
         <div>
+            <h2 className="containerTitle">Looking For A Game? Check Out Below!</h2>
             <div className="container">
+
                 {
                     props.item.map((item) => {
                         return (
@@ -53,11 +56,27 @@ const Items = (props) => {
                                             <h2>{item.name} (Need Players!)</h2> :
                                             <h2>{item.name} (Doesn't Need Players)</h2>
                                     } </span>
+                                <p><strong>Date/Time: {item.date}</strong></p>
                                 <p><strong>{item.description}</strong></p>
                                 <p><strong>Location: {item.location}</strong></p>
                                 <p><strong>Players Needed: {item.lfmNumber}</strong></p>
+                                <div className="buttons">
+                                    <Button variant="danger" onClick={(event) => { handleDelete(item) }}>Delete</Button>
+                                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                                        Edit
+                                </Button>
+                                </div>
 
-                                <button onClick={(event) => { handleDelete(item) }}>Delete</button>
+                                <EditModal
+                                    name={item.name}
+                                    date={item.date}
+                                    description={item.description}
+                                    location={item.location}
+                                    needed={item.lfmNumber}
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                />
+
                             </div>
                         )
                     })

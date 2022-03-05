@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios'
+import Button from 'react-bootstrap/Button';
 
 
 const Form = (props) => {
     const [name, setNewName] = useState('');
+    const [date, setNewDate] = useState('');
     const [description, setNewDescription] = useState('');
     const [location, setNewLocation] = useState('');
     const [lfm, setNewLFM] = useState(true);
@@ -12,6 +14,10 @@ const Form = (props) => {
 
     const handleNewName = (event) => {
         setNewName(event.target.value)
+    }
+
+    const handleNewDate = (event) => {
+        setNewDate(event.target.value)
     }
 
     const handleNewDescription = (event) => {
@@ -35,6 +41,7 @@ const Form = (props) => {
             'https://rocky-fortress-29259.herokuapp.com/sports',
             {
                 name: name,
+                date: date,
                 description: description,
                 location: location,
                 // LFM = looking for more aka need
@@ -53,15 +60,18 @@ const Form = (props) => {
 
     return (
         <>
+
             <div className="formBackground">
                 <div className="formContainer">
                     <form onSubmit={handleNewSportSubmit}>
+                        <h3>Add Your Event in the Form Below</h3>
                         <strong>Sport:</strong> <input type='text' onChange={handleNewName} /><br />
+                        <strong>Date/Time:</strong> <input type='date' onChange={handleNewDate} /><br />
                         <strong>Description:</strong> <input type='text' onChange={handleNewDescription} /><br />
                         <strong>Address/Location:</strong> <input type='text' onChange={handleNewLocation} /><br />
                         <strong>Looking For More Players?</strong> <input type='checkbox' onChange={handleNewLFM} /><br />
                         <strong>How Many?</strong> <input type='number' onChange={handleNewNumber} /><br />
-                        <input type='submit' value='Add Item' />
+                        <Button id="addButton" type='submit'>Add Item</Button>
                     </form>
                 </div>
             </div>

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Form from './components/form';
 import Item from './components/item'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 const App = () => {
@@ -49,7 +51,9 @@ const App = () => {
 
   return (
     <main>
-      <h2 className="title">Let's Find You a Partner!</h2>
+      <div className="title">
+        <h2>Let's Find You a Partner!</h2>
+      </div>
       <Form setSports={setSports} />
       <Item item={sports} setSports={setSports} />
 
