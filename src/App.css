@@ -1,12 +1,60 @@
+/* Title div at top of page */
+.title{
+  padding: 100px 0px 200px 0px;
+  background: url(./imgs/Background.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
+.title h2{  font-size: 45px;}
+
+.containerTitle{
+  padding-top: 45px;
+}
 
 body{
   background-color: whitesmoke;
-  text-align: center;
-  font-family: 'Lobster', cursive;
+  
 }
-Form {
-  background-color: grey
+
+/* Sports font for all headers and paragraphs */
+
+h1, h2 ,h3, h4, p {
+  font-family: 'Graduate', cursive !important;
+  text-align: center!important;
+}
+
+button{
+  margin: 0px 15px!important;
+  width: 75px;
+}
+
+#modalButton{
+  margin: 25px 0px 0px 0px!important;
+  width:inherit;
+}
+
+/* Button styling for eahc form */
+
+#addButton, #cancel, #submitEdit{
+  margin: 15px 0px 0px 0px!important;
+  width: 100%;
+}
+
+Form{
+  padding: 20px 0px 20px 0px;
+}
+
+.formContainer{
+  width: 50%;
+margin: auto;
+text-align: left;
+}
+
+
+.formBackground{
+  background-color: rgb(219, 219, 219)!important;
 }
 
 .container {
@@ -14,12 +62,67 @@ Form {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1em;
+  margin: 20px 45px 45px 60px;
 
 }
+
+/* Styling for each activity card*/
+
 .card {
   display: flex;
+  flex: 0 1 400px;
+  margin: 15px 0px 0px 0px;
+  background-color: rgb(241, 241, 241)!important;
+  padding: 15px;
   flex-direction: column;
   align-items: center;
-  background-color: grey;
+  border: 1px solid rgb(97, 97, 97)!important;
   border-radius: 15px;
+  justify-content: space-around;
+}
+
+/* Same styling as above, but no justify content. Used when edit form is dropped, so that content still looks good */
+
+.cardToggled{
+    display: flex;
+    flex: 0 1 400px;
+    margin: 15px 0px 0px 0px;
+    background-color: rgb(241, 241, 241)!important;
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(97, 97, 97)!important;
+    border-radius: 15px;
+  
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 4px 0;
+  box-sizing: border-box;
+}
+
+input[type=checkbox]{
+  width: 4%;
+}
+
+input[type=submit]{
+  margin: 12px 0;
+}
+
+.searchBar{
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Media Queries */
+
+@media (max-width: 600px) {
+  .formContainer, .searchBar{
+    width: 90%;
+  margin: auto;
+  text-align: left;
+  }
 }
