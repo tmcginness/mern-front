@@ -9,6 +9,7 @@ const Items = (props) => {
 
     // Set variables for editing
     const [editActivityName, setEditActivityName] = useState('')
+    const [editActivityContact, setEditActivityContact] = useState('')
     const [editActivityDescription, setEditActivityDescription] = useState('')
     const [editActivityDate, setEditActivityDate] = useState('')
     const [editActivityNumber, setEditActivityNumber] = useState('')
@@ -28,6 +29,9 @@ const Items = (props) => {
     }
     const handleEditActivityDate = (e) => {
         setEditActivityDate(e.target.value)
+    }
+    const handleEditActivityContact = (e) => {
+        setEditActivityContact(e.target.value)
     }
     const handleEditActivityNumber = (e) => {
         setEditActivityNumber(e.target.value)
@@ -52,6 +56,7 @@ const Items = (props) => {
         setEditFormId(item._id)
         setEditActivityName(item.name)
         setEditActivityLocation(item.location)
+        setEditActivityContact(item.contact)
         setEditActivityDescription(item.description)
         setEditActivityNumber(item.number)
     }
@@ -64,6 +69,7 @@ const Items = (props) => {
             date: editActivityDate,
             description: editActivityDescription,
             location: editActivityLocation,
+            contact: editActivityContact,
             // LFM = looking for more aka need
             lfmNumber: editActivityNumber
         })
@@ -142,6 +148,7 @@ const Items = (props) => {
                                 <p><strong>Date/Time: {item.date}</strong></p>
                                 <p><strong>{item.description}</strong></p>
                                 <p><strong>Location: {item.location}</strong></p>
+                                <p><strong>Contact Info: {item.contact}</strong></p>
                                 {/* Toggle players needed to 0 if none needed */}
                                 {
                                     (item.lfm) ?
@@ -170,6 +177,7 @@ const Items = (props) => {
                                             Date: <input type="date" onChange={handleEditActivityDate} /><br />
                                             Description: <input value={editActivityDescription} type="text" onChange={handleEditActivityDescription} /><br />
                                             Location: <input value={editActivityLocation} type="text" onChange={handleEditActivityLocation} /><br />Players Needed: <input type="number" value={editActivityNumber} onChange={handleEditActivityNumber} /><br />
+                                            Contact Info: <input type="text" value={editActivityContact} onChange={handleEditActivityContact} /><br />
 
                                             <Button variant="success" id="submitEdit" type="submit" >Update this activity</Button>
                                             <Button id="cancel" variant="danger" onClick={handleCancel}>Cancel Edit</Button>

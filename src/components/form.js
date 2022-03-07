@@ -8,6 +8,7 @@ const Form = (props) => {
     // Set state for new item
     const [name, setNewName] = useState('');
     const [date, setNewDate] = useState('');
+    const [contact, setNewContact] = useState('');
     const [description, setNewDescription] = useState('');
     const [location, setNewLocation] = useState('');
     const [lfm, setNewLFM] = useState(true);
@@ -30,6 +31,10 @@ const Form = (props) => {
         setNewLocation(event.target.value)
     }
 
+    const handleNewContact = (event) => {
+        setNewContact(event.target.value)
+    }
+
     const handleNewLFM = (event) => {
         setNewLFM(event.target.checked)
     }
@@ -49,7 +54,8 @@ const Form = (props) => {
                 location: location,
                 // LFM = looking for more aka need
                 lfm: lfm,
-                lfmNumber: number
+                lfmNumber: number,
+                contact: contact
             }
         ).then(() => {
             axios
@@ -74,6 +80,7 @@ const Form = (props) => {
                         <strong>Address/Location:</strong> <input type='text' onChange={handleNewLocation} /><br />
                         <strong>Looking For More Players?</strong> <input type='checkbox' onChange={handleNewLFM} /><br />
                         <strong>How Many?</strong> <input type='number' onChange={handleNewNumber} /><br />
+                        <strong>Contact Info</strong> <input type='text' onChange={handleNewContact} /><br />
                         <Button id="addButton" type='submit'>Add Item</Button>
                     </form>
                 </div>
