@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 
 
 const Form = (props) => {
+
+    // Set state for new item
     const [name, setNewName] = useState('');
     const [date, setNewDate] = useState('');
     const [description, setNewDescription] = useState('');
@@ -35,6 +37,7 @@ const Form = (props) => {
         setNewNumber(event.target.value)
     }
 
+    // If user submits form, post it to DB
     const handleNewSportSubmit = (e) => {
         e.preventDefault();
         axios.post(

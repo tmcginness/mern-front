@@ -5,10 +5,9 @@ import EditModal from './modal'
 import Button from 'react-bootstrap/Button';
 
 
-
-
 const Items = (props) => {
 
+    // Set variables for editing
     const [editActivityName, setEditActivityName] = useState('')
     const [editActivityDescription, setEditActivityDescription] = useState('')
     const [editActivityDate, setEditActivityDate] = useState('')
@@ -17,6 +16,7 @@ const Items = (props) => {
     const [editFormId, setEditFormId] = useState('')
     const [card, setCard] = useState('card')
 
+    // Editing functions for each input
     const handleEditActivityName = (e) => {
         setEditActivityName(e.target.value)
     }
@@ -33,16 +33,20 @@ const Items = (props) => {
         setEditActivityNumber(e.target.value)
     }
 
+    // If user cancels editing, close form and reset styling to default
     const handleCancel = () => {
         setEditFormId('')
         setCard('card')
     }
 
     const [modalShow, setModalShow] = React.useState(false);
+
+    // Search bar functionality
     const [query, setQuery] = useState("")
     // const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
 
+    // If user clicks 'edit' show form and keep content of other cards at the top
     const handleShowEditForm = (item) => {
         setCard('cardToggled')
         setEditFormId(item._id)
@@ -52,6 +56,7 @@ const Items = (props) => {
         setEditActivityNumber(item.number)
     }
 
+    // If user submits edit form, PUT the inputs, and close the form
     const handleEditFormSubmit = (item, e) => {
         e.preventDefault()
         axios.put(`https://rocky-fortress-29259.herokuapp.com/sports/${item._id}`, {
@@ -63,6 +68,8 @@ const Items = (props) => {
             lfmNumber: editActivityNumber
         })
             .then(() => {
+                setEditFormId('')
+                setCard('card')
                 axios
                     .get('https://rocky-fortress-29259.herokuapp.com/sports')
                     .then((response) => {
@@ -71,6 +78,7 @@ const Items = (props) => {
             })
     }
 
+    // If user hits DELETE button, remove item from DB
     const handleDelete = (itemData) => {
         axios
             .delete(`https://rocky-fortress-29259.herokuapp.com/sports/${itemData._id}`)
@@ -84,7 +92,7 @@ const Items = (props) => {
     }
 
 
-
+    // If user clicks on activity title (h2) toggle whether or not they need players
     const handleToggleLFM = (itemData) => {
         axios
             .put(
@@ -111,7 +119,7 @@ const Items = (props) => {
                 <input placeholder="Search For A Sport Or Location" onChange={event => setQuery(event.target.value)} />
             </div>
             <div className="container">
-
+                {/* Search Bar, if location or title contains query, display it*/}
                 {
                     props.item.filter(item => {
                         if (query === '') {
@@ -121,7 +129,9 @@ const Items = (props) => {
                         }
                     }).map((item) => {
                         return (
-                            <div className={card} >
+
+                            < div className={card} >
+                                {/* Toggle 'Need players or Don't */}
                                 <span key={item._id}
                                     onClick={(event) => { handleToggleLFM(item) }}>
                                     {
@@ -132,7 +142,14 @@ const Items = (props) => {
                                 <p><strong>Date/Time: {item.date}</strong></p>
                                 <p><strong>{item.description}</strong></p>
                                 <p><strong>Location: {item.location}</strong></p>
-                                <p><strong>Players Needed: {item.lfmNumber}</strong></p>
+                                {/* Toggle players needed to 0 if none needed */}
+                                {
+                                    (item.lfm) ?
+                                        <p><strong>Players Needed: {item.lfmNumber}</strong></p>
+                                        :
+                                        <p><strong>Players Needed: 0</strong></p>
+                                }
+
                                 <div className="buttons">
                                     <Button variant="danger" onClick={(event) => { handleDelete(item) }}>Delete</Button>
                                     {/* <Button variant="primary" onClick={() => setModalShow(true)}>
@@ -141,16 +158,18 @@ const Items = (props) => {
                                     <Button variant="primary" onClick={() => { handleShowEditForm(item) }}>
                                         Edit
                                 </Button>
+
+
                                 </div>
 
-
+                                {/* Show edit form if user clicks 'edit' */}
                                 {
                                     (editFormId === item._id) ?
                                         <form onSubmit={(event) => { handleEditFormSubmit(item, event) }}>
-                                            Sport: <input type="text" onChange={handleEditActivityName} /><br />
-                                            Date: <input type="date" onChange={handleEditActivityDate} /><br />
-                                            Description: <input type="text" onChange={handleEditActivityDescription} /><br />
-                                            Location: <input type="text" onChange={handleEditActivityLocation} /><br />Players Needed: <input type="text" onChange={handleEditActivityNumber} /><br />
+                                            Sport: <input type="text" value={editActivityName} onChange={handleEditActivityName} /><br />
+                                            Date: <input value={editActivityDate} type="date" onChange={handleEditActivityDate} /><br />
+                                            Description: <input value={editActivityDescription} type="text" onChange={handleEditActivityDescription} /><br />
+                                            Location: <input value={editActivityLocation} type="text" onChange={handleEditActivityLocation} /><br />Players Needed: <input type="number" value={editActivityNumber} onChange={handleEditActivityNumber} /><br />
 
                                             <Button id="submitEdit" type="submit" >Update this activity</Button>
                                             <Button id="cancel" onClick={handleCancel}>Cancel Edit</Button>

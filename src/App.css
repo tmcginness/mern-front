@@ -1,3 +1,4 @@
+/* Title div at top of page */
 .title{
   padding: 100px 0px 200px 0px;
   background: url(./imgs/Background.jpeg);
@@ -17,6 +18,8 @@ body{
   
 }
 
+/* Sports font for all headers and paragraphs */
+
 h1, h2 ,h3, h4, p {
   font-family: 'Graduate', cursive !important;
   text-align: center!important;
@@ -31,6 +34,8 @@ button{
   margin: 25px 0px 0px 0px!important;
   width:inherit;
 }
+
+/* Button styling for eahc form */
 
 #addButton, #cancel, #submitEdit{
   margin: 15px 0px 0px 0px!important;
@@ -47,6 +52,7 @@ margin: auto;
 text-align: left;
 }
 
+
 .formBackground{
   background-color: rgb(219, 219, 219)!important;
 }
@@ -59,6 +65,8 @@ text-align: left;
   margin: 20px 45px 45px 60px;
 
 }
+
+/* Styling for each activity card*/
 
 .card {
   display: flex;
@@ -73,8 +81,9 @@ text-align: left;
   justify-content: space-around;
 }
 
+/* Same styling as above, but no justify content. Used when edit form is dropped, so that content still looks good */
+
 .cardToggled{
-  
     display: flex;
     flex: 0 1 400px;
     margin: 15px 0px 0px 0px;
@@ -107,6 +116,8 @@ input[type=submit]{
   text-align: center;
   margin: 0 auto;
 }
+
+/* Media Queries */
 
 @media (max-width: 600px) {
   .formContainer, .searchBar{
