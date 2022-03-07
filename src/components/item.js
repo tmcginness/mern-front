@@ -167,12 +167,12 @@ const Items = (props) => {
                                     (editFormId === item._id) ?
                                         <form onSubmit={(event) => { handleEditFormSubmit(item, event) }}>
                                             Sport: <input type="text" value={editActivityName} onChange={handleEditActivityName} /><br />
-                                            Date: <input value={editActivityDate} type="date" onChange={handleEditActivityDate} /><br />
+                                            Date: <input type="date" onChange={handleEditActivityDate} /><br />
                                             Description: <input value={editActivityDescription} type="text" onChange={handleEditActivityDescription} /><br />
                                             Location: <input value={editActivityLocation} type="text" onChange={handleEditActivityLocation} /><br />Players Needed: <input type="number" value={editActivityNumber} onChange={handleEditActivityNumber} /><br />
 
-                                            <Button id="submitEdit" type="submit" >Update this activity</Button>
-                                            <Button id="cancel" onClick={handleCancel}>Cancel Edit</Button>
+                                            <Button variant="success" id="submitEdit" type="submit" >Update this activity</Button>
+                                            <Button id="cancel" variant="danger" onClick={handleCancel}>Cancel Edit</Button>
                                         </form> :
                                         ''
                                 }
