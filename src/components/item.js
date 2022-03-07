@@ -8,10 +8,68 @@ import Button from 'react-bootstrap/Button';
 
 
 const Items = (props) => {
+
+    const [editActivityName, setEditActivityName] = useState('')
+    const [editActivityDescription, setEditActivityDescription] = useState('')
+    const [editActivityDate, setEditActivityDate] = useState('')
+    const [editActivityNumber, setEditActivityNumber] = useState('')
+    const [editActivityLocation, setEditActivityLocation] = useState('')
+    const [editFormId, setEditFormId] = useState('')
+    const [card, setCard] = useState('card')
+
+    const handleEditActivityName = (e) => {
+        setEditActivityName(e.target.value)
+    }
+    const handleEditActivityLocation = (e) => {
+        setEditActivityLocation(e.target.value)
+    }
+    const handleEditActivityDescription = (e) => {
+        setEditActivityDescription(e.target.value)
+    }
+    const handleEditActivityDate = (e) => {
+        setEditActivityDate(e.target.value)
+    }
+    const handleEditActivityNumber = (e) => {
+        setEditActivityNumber(e.target.value)
+    }
+
+    const handleCancel = () => {
+        setEditFormId('')
+        setCard('card')
+    }
+
     const [modalShow, setModalShow] = React.useState(false);
     const [query, setQuery] = useState("")
     // const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
+
+    const handleShowEditForm = (item) => {
+        setCard('cardToggled')
+        setEditFormId(item._id)
+        setEditActivityName(item.name)
+        setEditActivityLocation(item.location)
+        setEditActivityDescription(item.description)
+        setEditActivityNumber(item.number)
+    }
+
+    const handleEditFormSubmit = (item, e) => {
+        e.preventDefault()
+        axios.put(`https://rocky-fortress-29259.herokuapp.com/sports/${item._id}`, {
+            name: editActivityName,
+            date: editActivityDate,
+            description: editActivityDescription,
+            location: editActivityLocation,
+            // LFM = looking for more aka need
+            lfmNumber: editActivityNumber
+        })
+            .then(() => {
+                axios
+                    .get('https://rocky-fortress-29259.herokuapp.com/sports')
+                    .then((response) => {
+                        props.setSports(response.data)
+                    })
+            })
+    }
 
     const handleDelete = (itemData) => {
         axios
@@ -24,6 +82,8 @@ const Items = (props) => {
                     })
             })
     }
+
+
 
     const handleToggleLFM = (itemData) => {
         axios
@@ -61,7 +121,7 @@ const Items = (props) => {
                         }
                     }).map((item) => {
                         return (
-                            <div className="card" >
+                            <div className={card} >
                                 <span key={item._id}
                                     onClick={(event) => { handleToggleLFM(item) }}>
                                     {
@@ -75,22 +135,28 @@ const Items = (props) => {
                                 <p><strong>Players Needed: {item.lfmNumber}</strong></p>
                                 <div className="buttons">
                                     <Button variant="danger" onClick={(event) => { handleDelete(item) }}>Delete</Button>
-                                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                                    {/* <Button variant="primary" onClick={() => setModalShow(true)}>
+                                        Edit
+                                </Button> */}
+                                    <Button variant="primary" onClick={() => { handleShowEditForm(item) }}>
                                         Edit
                                 </Button>
                                 </div>
 
-                                <EditModal
-                                    id={item._id}
-                                    name={item.name}
-                                    date={item.date}
-                                    description={item.description}
-                                    location={item.location}
-                                    needed={item.lfmNumber}
-                                    show={modalShow}
-                                    onHide={() => setModalShow(false)}
-                                />
 
+                                {
+                                    (editFormId === item._id) ?
+                                        <form onSubmit={(event) => { handleEditFormSubmit(item, event) }}>
+                                            Sport: <input type="text" onChange={handleEditActivityName} /><br />
+                                            Date: <input type="date" onChange={handleEditActivityDate} /><br />
+                                            Description: <input type="text" onChange={handleEditActivityDescription} /><br />
+                                            Location: <input type="text" onChange={handleEditActivityLocation} /><br />Players Needed: <input type="text" onChange={handleEditActivityNumber} /><br />
+
+                                            <Button id="submitEdit" type="submit" >Update this activity</Button>
+                                            <Button id="cancel" onClick={handleCancel}>Cancel Edit</Button>
+                                        </form> :
+                                        ''
+                                }
                             </div>
                         )
                     })
