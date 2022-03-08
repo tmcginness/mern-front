@@ -22,7 +22,7 @@ const App = () => {
   return (
     <main>
       <div className="title">
-        <h2>Let's Find You a Partner!</h2>
+        <h2>Let's Find You a Teammate!</h2>
       </div>
       <Form setSports={setSports} />
       <Item item={sports} setSports={setSports} />
